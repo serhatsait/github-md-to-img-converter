@@ -90,3 +90,8 @@ typings/
 .dynamodb/
 
 
+.github
+resource
+spec
+codecov.yml
+karma.conf.js

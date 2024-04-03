@@ -1,8 +1,8 @@
 chrome.storage.sync.get( function (storage) {
   var activeTextElement = document.activeElement
   var textAreaStr = activeTextElement.value
-  
-  if (textAreaStr == undefined) { return }
+
+  if (textAreaStr === undefined) { return }
   var params = createParams(storage)
 
   var replacedText
@@ -32,9 +32,9 @@ function convertOnlySelectionToImgTag(text, params, start, end) {
     }
 
     let replacedText
-    if (start == 0) {
+    if (start === 0) {
       replacedText = imgTagText + text.substring(end, text.length)
-    } else if (end == 0) {
+    } else if (end === 0) {
       replacedText = text.substring(0, start) + imgTagText
     } else {
       replacedText = text.substring(0, start) + imgTagText + text.substring(end, text.length)
@@ -45,12 +45,12 @@ function convertOnlySelectionToImgTag(text, params, start, end) {
 function convertToImgTag(text, params) {
   let replacedText = text
 
-  // Extract markdown notation image
+  // Markdown notasyonu içeren bir resmi çıkart
   const mdImageArray = createMarkdownImages(text, params)
 
   if (mdImageArray == null) { return null }
 
-  // Replace from markdown notation to image tag
+  // Markdown notasyonundan görüntü etiketine değiştir
   for (const mdImage of mdImageArray) {
     replacedText = replacedText.replace(mdImage.mdImageText, mdImage.imageTag)
   }
@@ -65,8 +65,8 @@ function createMarkdownImages(text, params) {
 
   for (const mdImage of results) {
     const imageURL = mdImage.match(/\((https:\S+)\)/i)[1]
-    const imageTag = `<img src=${imageURL} ${params}>`
-    const markdownImage = new MarkdownImage(imageURL, mdImage, imageTag)
+      const imageTag = `<img alt="" src="${imageURL}" ${params}>`;
+      const markdownImage = new MarkdownImage(imageURL, mdImage, imageTag)
     markdownImageArray.push(markdownImage)
   }
   return markdownImageArray
@@ -74,17 +74,17 @@ function createMarkdownImages(text, params) {
 
 function createParams(storage) {
   let result = ""
-  if (storage.width != null && storage.width != "") {
-    result += ` width=${storage.width}`
+  if (storage.width != null && storage.width !== "") {
+    result += ` width="${storage.width}"`
   }
 
-  if (storage.height != null && storage.height != "") {
-    result += ` height=${storage.height}`
+  if (storage.height != null && storage.height !== "") {
+    result += ` height="${storage.height}"`
   }
 
-  // Initialize
-  if (result == "") {
-    result = " width=50%"
+  // Başlangıç değerleri
+  if (result === "") {
+    result = " width='50%' height='50%'"
   }
 
   return result
