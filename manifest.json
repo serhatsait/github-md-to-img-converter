@@ -23,9 +23,9 @@
     "open_in_tab": false
   },
   "icons": {
-    "16": "resource/image/icons/16.png",
-    "48": "resource/image/icons/48.png",
-    "128": "resource/image/icons/128.png"
+    "16": "resource/image/icons/source.png",
+    "48": "resource/image/icons/source.png",
+    "128": "resource/image/icons/source.png"
   },
   "browser_specific_settings": {
     "gecko": {
